@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Outfit, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { AuthProvider } from "@/lib/auth-context";
+
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
@@ -97,12 +97,10 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${outfit.variable} ${geistMono.variable} antialiased font-sans flex flex-col min-h-screen`}
       >
-        <AuthProvider>
-          <TooltipProvider>
-            {children}
-            <Toaster position="top-right" richColors />
-          </TooltipProvider>
-        </AuthProvider>
+        <TooltipProvider>
+          {children}
+          <Toaster position="top-right" richColors />
+        </TooltipProvider>
       </body>
     </html>
   );

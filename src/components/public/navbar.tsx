@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useAuth } from "@/lib/auth-context";
 
 const navLinks = [
   { href: "#home", label: "Home" },
@@ -17,7 +16,6 @@ const navLinks = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { isAdmin } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -59,31 +57,7 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
-            {isAdmin && (
-              <Link href="/admin" className="ml-4">
-                <Button
-                  size="sm"
-                  className="bg-[#9b2c2c] hover:bg-[#822727] text-white shadow-md shadow-[#9b2c2c]/15 hover:shadow-[#9b2c2c]/25 transition-all duration-300 rounded-lg font-semibold border-0 text-[13px] h-9 px-5"
-                >
-                  Dashboard
-                </Button>
-              </Link>
-            )}
           </div>
-
-          {/* Mobile Center Sign In */}
-          {isAdmin && (
-            <div className="absolute left-1/2 -translate-x-1/2 md:hidden">
-              <Link href="/admin">
-                <Button
-                  size="sm"
-                  className="bg-[#9b2c2c] hover:bg-[#822727] text-white shadow-md shadow-[#9b2c2c]/20 transition-all duration-300 rounded-lg font-semibold border-0 text-[11px] h-7 px-4"
-                >
-                  Dashboard
-                </Button>
-              </Link>
-            </div>
-          )}
 
           {/* Mobile Toggle */}
           <button
