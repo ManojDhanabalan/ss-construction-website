@@ -155,87 +155,26 @@ const constructionMethods = [
 ];
 
 
+import dynamic from "next/dynamic";
+
+const ScrollHero = dynamic(
+  () => import("@/components/hero/ScrollHero").then((m) => m.ScrollHero),
+  { 
+    ssr: false,
+    loading: () => <div className="h-[100vh] w-full bg-[#0a0a0a]" />,
+  }
+);
+
 export default function LandingPage() {
   return (
     <div className="overflow-hidden font-sans text-[#4a5568] bg-amber-50">
       
       {/* ═══════════════════════════════════════════════════
-          1. HERO SECTION
-          Clean, centered layout inspired by modern SaaS sites
+          1. HERO SECTION (Scroll Scrubbed)
        ═══════════════════════════════════════════════════ */}
-      <section id="home" className="relative min-h-[85vh] sm:min-h-[92vh] flex flex-col items-center justify-center pt-2 sm:pt-28 pb-2 sm:pb-16 overflow-hidden" style={{background: 'linear-gradient(135deg, #0d0d1a 0%, #1a1a2e 40%, #16213e 70%, #0f1b35 100%)'}}>
-
-        {/* Blueprint grid overlay */}
-        <div className="absolute inset-0 z-0" style={{backgroundImage: 'linear-gradient(rgba(155,44,44,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(155,44,44,0.07) 1px, transparent 1px)', backgroundSize: '60px 60px'}} />
-
-        {/* Large crimson glow — top left */}
-        <div className="absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full z-0" style={{background: 'radial-gradient(circle, rgba(155,44,44,0.28) 0%, transparent 70%)', filter: 'blur(60px)'}} />
-
-        {/* Amber warm glow — bottom right */}
-        <div className="absolute -bottom-24 -right-24 w-[420px] h-[420px] rounded-full z-0" style={{background: 'radial-gradient(circle, rgba(183,121,31,0.22) 0%, transparent 70%)', filter: 'blur(70px)'}} />
-
-        {/* Soft center highlight */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[300px] rounded-full z-0" style={{background: 'radial-gradient(ellipse, rgba(255,255,255,0.04) 0%, transparent 70%)', filter: 'blur(40px)'}} />
-
-        {/* Diagonal stripe accent */}
-        <div className="absolute inset-0 z-0 opacity-[0.03]" style={{backgroundImage: 'repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 0, transparent 50%)', backgroundSize: '20px 20px'}} />
-        
-        <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center">
-          
-          {/* Hero headline */}
-          <h1 className="text-[2.25rem] sm:text-[3.25rem] md:text-[4rem] lg:text-[5rem] font-bold tracking-[-0.02em] leading-[1.1] mb-6 max-w-4xl" style={{color: '#f0ece4'}}>
-            Building the future,
-            <br />
-            <span style={{background: 'linear-gradient(90deg, #e53e3e, #c53030, #b7791f)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text'}}>one foundation</span> at a time.
-          </h1>
-
-          <p className="text-sm sm:text-lg font-normal max-w-lg mx-auto mb-10 sm:mb-14 leading-[1.7] px-2 sm:px-0" style={{color: 'rgba(240,236,228,0.72)'}}>
-            Premium residential & commercial construction in Tamil Nadu — where architectural vision meets uncompromising structural integrity.
-          </p>
-
-          {/* Overlapping Fan of Images */}
-          <div className="relative w-full max-w-4xl mx-auto h-[180px] sm:h-[320px] mb-8 sm:mb-14 flex justify-center items-center">
-            
-            {/* Floating Tags */}
-            <div className="absolute -top-3 sm:top-2 left-[2%] sm:left-[14%] text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full font-medium text-[10px] sm:text-sm -rotate-12 z-40 tracking-wide" style={{background: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,0.15)', boxShadow: '0 4px 15px rgba(0,0,0,0.3)'}}>
-              #architecture
-            </div>
-            <div className="absolute -top-4 sm:top-0 right-[2%] sm:right-[14%] text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full font-medium text-[10px] sm:text-sm rotate-[10deg] z-40 tracking-wide" style={{background: 'rgba(183,121,31,0.8)', backdropFilter: 'blur(10px)', border: '1px solid rgba(183,121,31,0.4)', boxShadow: '0 4px 15px rgba(183,121,31,0.3)'}}>
-              #premium
-            </div>
-            <div className="absolute -bottom-2 sm:bottom-4 left-[5%] sm:left-[18%] px-3 sm:px-4 py-1.5 sm:py-2 rounded-full font-bold text-[10px] sm:text-sm rotate-[8deg] z-40 tracking-wide" style={{background: 'rgba(255,255,255,0.12)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,0.2)', color: '#f0ece4', boxShadow: '0 4px 15px rgba(0,0,0,0.2)'}}>
-              #trusted
-            </div>
-            <div className="absolute -bottom-4 sm:bottom-2 right-[5%] sm:right-[16%] text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full font-medium text-[10px] sm:text-sm -rotate-[12deg] z-40 tracking-wide" style={{background: 'rgba(155,44,44,0.85)', backdropFilter: 'blur(10px)', border: '1px solid rgba(229,62,62,0.4)', boxShadow: '0 4px 15px rgba(155,44,44,0.4)'}}>
-              #excellence
-            </div>
-
-            {/* Far Left */}
-            <div className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-[160%] sm:-translate-x-[230%] -rotate-[12deg] sm:-rotate-[15deg] w-[85px] sm:w-[200px] aspect-[4/5] rounded-2xl overflow-hidden shadow-lg z-10 transition-transform duration-500 hover:-translate-y-8 hover:z-50 hover:rotate-0 border border-white/60">
-              <img src="/hero_carousel_1.png" className="w-full h-full object-cover" alt="Construction site" />
-            </div>
-            {/* Mid Left */}
-            <div className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-[85%] sm:-translate-x-[130%] -rotate-[4deg] sm:-rotate-[8deg] w-[85px] sm:w-[220px] aspect-[4/5] rounded-2xl overflow-hidden shadow-xl z-20 transition-transform duration-500 hover:-translate-y-8 hover:z-50 hover:rotate-0 border border-white/60">
-              <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80" className="w-full h-full object-cover" alt="Luxury villa" />
-            </div>
-            {/* Center — largest, deepest shadow */}
-            <div className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-[15%] sm:-translate-x-1/2 rotate-[4deg] sm:rotate-0 w-[85px] sm:w-[260px] aspect-[4/5] rounded-2xl overflow-hidden shadow-[0_16px_48px_rgba(26,26,46,0.18)] z-30 transition-transform duration-500 hover:-translate-y-8 hover:scale-[1.03] border-2 border-white">
-              <img src="/hero_carousel_2.png" className="w-full h-full object-cover" alt="Architect reviewing plans" />
-            </div>
-            {/* Mid Right */}
-            <div className="absolute left-1/2 top-1/2 -translate-y-1/2 translate-x-[60%] sm:translate-x-[30%] rotate-[12deg] sm:rotate-[8deg] w-[85px] sm:w-[220px] aspect-[4/5] rounded-2xl overflow-hidden shadow-xl z-20 transition-transform duration-500 hover:-translate-y-8 hover:z-50 hover:rotate-0 border border-white/60">
-              <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80" className="w-full h-full object-cover" alt="Modern apartments" />
-            </div>
-            {/* Far Right */}
-            <div className="absolute left-1/2 top-1/2 -translate-y-1/2 translate-x-[100%] sm:translate-x-[130%] rotate-[15deg] w-[110px] sm:w-[200px] aspect-[4/5] rounded-2xl overflow-hidden shadow-lg z-10 transition-transform duration-500 hover:-translate-y-8 hover:z-50 hover:rotate-0 border border-white/60 hidden sm:block">
-              <img src="/hero_carousel_3.png" className="w-full h-full object-cover" alt="Modern building" />
-            </div>
-          </div>
-
-
-
-        </div>
-      </section>
+      <div id="home">
+        <ScrollHero />
+      </div>
 
       {/* ═══════════════════════════════════════════════════
           2. ABOUT SECTION
@@ -429,33 +368,72 @@ export default function LandingPage() {
       {/* ═══════════════════════════════════════════════════
           7. CONTACT SECTION
        ═══════════════════════════════════════════════════ */}
-      <section id="contact" className="py-16 lg:py-24 bg-white">
-        <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-10 text-center">
-          <h2 className="text-4xl lg:text-[4rem] font-bold text-[#1a1a2e] tracking-tight mb-5 uppercase">
-            Get In Touch
-          </h2>
-          <p className="text-base text-[#374151] max-w-3xl mx-auto mb-16 leading-[1.7]">
-            Reach out to us directly through any of the channels below. We are ready to answer your questions and start planning your next construction journey.
-          </p>
-          
-          <div className="grid md:grid-cols-3 gap-6 lg:gap-8 text-left">
-            {[
-              { icon: Mail, label: "Email", value: "ssconstructionerode01@gmail.com" },
-              { icon: MapPin, label: "Address", value: "Sadayappa Complex, First Floor, Shop No.3, Kollampalayam Bypass, Erode." },
-              { icon: Phone, label: "Call", value: "+91 94869 87424" },
-            ].map((item, i) => (
-              <div key={i} className="bg-amber-50 border border-[#e8e4de] p-6 flex items-start gap-5 shadow-sm hover:shadow-md transition-shadow duration-300 h-full">
-                <div className="w-14 h-14 bg-[#b7791f] flex items-center justify-center shrink-0">
-                  <item.icon className="w-6 h-6 text-white" strokeWidth={2.5} />
-                </div>
-                <div className="flex flex-col pt-0.5 min-w-0 flex-1">
-                  <h4 className="font-bold text-[#1a1a2e] text-lg mb-1">{item.label}</h4>
-                  <p className="text-[#374151] text-[13px] sm:text-sm leading-relaxed break-words overflow-wrap-anywhere">
-                    {item.value}
-                  </p>
-                </div>
+      <section id="contact" className="py-16 lg:py-24 bg-white relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            
+            {/* Left Side: Contact Details */}
+            <div className="flex flex-col">
+              <span className="inline-block text-xs font-semibold tracking-[0.15em] uppercase text-[#b7791f] mb-3">
+                Let's Connect
+              </span>
+              <h2 className="text-4xl lg:text-[3.5rem] font-bold text-[#1a1a2e] leading-[1.1] mb-6">
+                Get In Touch
+              </h2>
+              <p className="text-base text-[#374151] leading-[1.7] mb-10 max-w-lg">
+                Reach out to us directly through any of the channels below. We are ready to answer your questions and start planning your next construction journey.
+              </p>
+              
+              <div className="space-y-4">
+                {[
+                  { icon: Mail, label: "Email Address", value: "ssconstructionerode01@gmail.com", highlight: true },
+                  { icon: MapPin, label: "Office Location", value: "Sadayappa Complex, First Floor, Shop No.3, Kollampalayam Bypass, Erode." },
+                  { icon: Phone, label: "Phone Number", value: "+91 94869 87424" },
+                ].map((item, i) => (
+                  <div 
+                    key={i} 
+                    className="group flex items-start gap-5 p-5 rounded-2xl transition-all duration-300 hover:bg-amber-50/50 border border-transparent hover:border-[#e8e4de]"
+                  >
+                    <div className={`w-14 h-14 rounded-full flex items-center justify-center shrink-0 transition-colors duration-300 ${item.highlight ? 'bg-[#b7791f] text-white shadow-lg shadow-[#b7791f]/30' : 'bg-gray-100 text-[#1a1a2e] group-hover:bg-[#b7791f] group-hover:text-white'}`}>
+                      <item.icon className="w-6 h-6" strokeWidth={2} />
+                    </div>
+                    <div className="flex flex-col pt-1">
+                      <h4 className="font-bold text-[#1a1a2e] text-[15px] mb-1">{item.label}</h4>
+                      <p className="text-[#4a5568] text-[14px] leading-relaxed max-w-sm">
+                        {item.value}
+                      </p>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+
+            {/* Right Side: Custom Built Icon Illustration */}
+            <div className="relative w-full h-[400px] sm:h-[500px] flex justify-center items-center">
+              {/* Background Glowing Blobs */}
+              <div className="absolute w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] bg-gradient-to-tr from-[#b7791f]/20 via-amber-100/40 to-transparent rounded-full blur-3xl -z-10 animate-pulse" style={{ animationDuration: '4s' }} />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-[#1a1a2e]/5 rounded-full blur-2xl -z-10" />
+              
+              {/* Main Centerpiece: Mail */}
+              <div className="relative z-10 bg-white p-8 sm:p-12 rounded-[2.5rem] shadow-2xl shadow-[#b7791f]/15 border border-white/80 hover:-translate-y-2 transition-transform duration-500 flex items-center justify-center">
+                <Mail className="w-24 h-24 sm:w-32 sm:h-32 text-[#b7791f]" strokeWidth={1.2} />
+              </div>
+
+              {/* Floating Element 1: Phone */}
+              <div className="absolute top-[10%] right-[15%] sm:top-[15%] sm:right-[20%] bg-white p-4 sm:p-5 rounded-2xl shadow-xl shadow-black/5 animate-[bounce_5s_ease-in-out_infinite] border border-gray-100 z-20">
+                <Phone className="w-8 h-8 sm:w-10 sm:h-10 text-[#1a1a2e]" strokeWidth={1.5} />
+              </div>
+
+              {/* Floating Element 2: Location */}
+              <div className="absolute bottom-[10%] left-[15%] sm:bottom-[15%] sm:left-[20%] bg-[#1a1a2e] p-4 sm:p-5 rounded-2xl shadow-xl shadow-[#1a1a2e]/20 animate-[bounce_6s_ease-in-out_infinite] border border-[#1a1a2e] z-20" style={{ animationDelay: '1s' }}>
+                <MapPin className="w-8 h-8 sm:w-10 sm:h-10 text-white" strokeWidth={1.5} />
+              </div>
+              
+              {/* Subtle Floating Decorative Elements */}
+              <div className="absolute top-1/3 left-1/4 w-3 h-3 bg-amber-400 rounded-full animate-ping" style={{ animationDuration: '3s' }} />
+              <div className="absolute bottom-1/3 right-1/4 w-5 h-5 border-2 border-[#1a1a2e]/20 rounded-full animate-pulse" style={{ animationDuration: '5s' }} />
+            </div>
+            
           </div>
         </div>
       </section>

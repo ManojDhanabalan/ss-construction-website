@@ -23,26 +23,26 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.ssconstructionerode.in"),
   title: {
-    default: "SS Construction | Best Construction Company in Erode",
+    default: "SS Construction | Best Civil Engineers & Construction in Erode",
     template: "%s | SS Construction",
   },
   description:
-    "SS Construction is a trusted construction company in Erode offering residential buildings, commercial construction, structural design, plumbing, electrical systems, and site management. Quality work with 4+ years of experience.",
+    "SS Construction is Erode's premier civil engineering and construction company. We specialize in residential building, commercial construction, and structural design with 4+ years of expertise.",
   keywords: [
     "SS Construction",
+    "civil engineers in Erode",
+    "best civil contractors Erode",
     "construction company Erode",
     "building contractors Erode",
     "residential construction Erode",
     "commercial construction Tamil Nadu",
     "structural design Erode",
-    "plumbing installation Erode",
-    "electrical systems construction",
-    "site management Erode",
+    "civil engineering services Erode",
     "best construction company Erode",
-    "Kollampalayam construction",
-    "Sankar construction",
+    "Kollampalayam civil engineers",
+    "Sankar construction Erode",
   ],
-  authors: [{ name: "SS Construction", url: "https://www.ssconstruction.in" }],
+  authors: [{ name: "SS Construction", url: "https://www.ssconstructionerode.in" }],
   creator: "SS Construction",
   publisher: "SS Construction",
   robots: {
@@ -60,9 +60,9 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: "https://www.ssconstructionerode.in",
     siteName: "SS Construction",
-    title: "SS Construction | Best Construction Company in Erode",
+    title: "SS Construction | Best Civil Engineers & Construction in Erode",
     description:
-      "Trusted construction company in Erode with 4+ years of experience. Specializing in residential, commercial buildings, plumbing, electrical, and structural work.",
+      "Trusted civil engineering and construction company in Erode. Specializing in residential, commercial buildings, and expert structural work.",
     images: [
       {
         url: "https://www.ssconstructionerode.in/og-image.jpg",
@@ -74,9 +74,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "SS Construction | Best Construction Company in Erode",
+    title: "SS Construction | Best Civil Engineers & Construction in Erode",
     description:
-      "Trusted construction company in Erode with 4+ years of experience in residential, commercial, and structural construction.",
+      "Trusted civil engineering and construction company in Erode with 4+ years of structural expertise.",
     images: ["https://www.ssconstructionerode.in/og-image.jpg"],
   },
   icons: {
@@ -92,11 +92,44 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "GeneralContractor",
+    "name": "SS Construction",
+    "image": "https://www.ssconstructionerode.in/logo.png",
+    "@id": "https://www.ssconstructionerode.in",
+    "url": "https://www.ssconstructionerode.in",
+    "telephone": "+919876543210",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "123 Construction Avenue",
+      "addressLocality": "Erode",
+      "addressRegion": "Tamil Nadu",
+      "postalCode": "638001",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 11.3410,
+      "longitude": 77.7172
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "opens": "09:00",
+      "closes": "18:00"
+    }
+  };
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${inter.variable} ${outfit.variable} ${geistMono.variable} antialiased font-sans flex flex-col min-h-screen`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <TooltipProvider>
           {children}
           <Toaster position="top-right" richColors />

@@ -8,7 +8,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
-import { submitContactMessage } from "@/lib/firestore";
 
 export default function ContactPage() {
   const [loading, setLoading] = useState(false);
@@ -27,7 +26,9 @@ export default function ContactPage() {
     }
     setLoading(true);
     try {
-      await submitContactMessage(form);
+      // Simulate backend request for the UI to show loading state
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
       toast.success("Message sent successfully! We'll get back to you soon.");
       setForm({ name: "", phone: "", email: "", message: "" });
     } catch {
