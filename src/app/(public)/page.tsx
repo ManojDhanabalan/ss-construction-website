@@ -155,15 +155,7 @@ const constructionMethods = [
 ];
 
 
-import dynamic from "next/dynamic";
-
-const ScrollHero = dynamic(
-  () => import("@/components/hero/ScrollHero").then((m) => m.ScrollHero),
-  { 
-    ssr: false,
-    loading: () => <div className="h-[100vh] w-full bg-[#0a0a0a]" />,
-  }
-);
+import { ScrollHero } from "@/components/hero/ScrollHero";
 
 export default function LandingPage() {
   return (
@@ -354,7 +346,7 @@ export default function LandingPage() {
                     </div>
                     <span className="text-4xl font-black text-[#f0ede8]">{method.id}</span>
                   </div>
-                  <h4 className="text-lg font-bold text-[#1a1a2e] mb-2 tracking-tight">{method.title}</h4>
+                  <h3 className="text-lg font-bold text-[#1a1a2e] mb-2 tracking-tight">{method.title}</h3>
                   <p className="text-[#374151] leading-[1.7] text-sm">
                     {method.desc}
                   </p>
@@ -398,7 +390,7 @@ export default function LandingPage() {
                       <item.icon className="w-6 h-6" strokeWidth={2} />
                     </div>
                     <div className="flex flex-col pt-1">
-                      <h4 className="font-bold text-[#1a1a2e] text-[15px] mb-1">{item.label}</h4>
+                      <h3 className="font-bold text-[#1a1a2e] text-[15px] mb-1">{item.label}</h3>
                       <p className="text-[#4a5568] text-[14px] leading-relaxed max-w-sm">
                         {item.value}
                       </p>
