@@ -84,6 +84,9 @@ export const metadata: Metadata = {
     apple: "/favicon.jpg",
     shortcut: "/favicon.jpg",
   },
+  verification: {
+    google: "8a7EiafTOmw9Un3cm3roN5x9-2_gquhtZFFpdDsNweg",
+  },
   category: "construction",
 };
 
