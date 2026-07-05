@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 export function ScrollHero() {
+  const [mounted, setMounted] = useState(false);
   const [rings, setRings] = useState<Array<{ id: number, left: number, delay: number, duration: number, size: number, rotateX: number, rotateY: number }>>([]);
 
   useEffect(() => {
@@ -25,7 +26,11 @@ export function ScrollHero() {
       };
     });
     setRings(ringDrops);
+    setMounted(true);
   }, []);
+
+  // We no longer return null on mount so the H1 tag is rendered on the server for SEO!
+  // Instead, we only conditionally render the randomized 3D rings on the client.
 
   return (
     <section className="relative min-h-screen w-full bg-[#0a0a0a] overflow-hidden flex flex-col justify-center pt-32 pb-16">
@@ -35,7 +40,7 @@ export function ScrollHero() {
 
       {/* ── Ambient 3D Rings Background ── */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none" style={{ perspective: '1000px' }}>
-        {rings.map((ring) => (
+        {mounted && rings.map((ring) => (
           <motion.div
             key={ring.id}
             initial={{ y: "-20vh" }}
@@ -74,8 +79,8 @@ export function ScrollHero() {
           transition={{ duration: 0.6 }}
         >
           <h1 className="text-[2.5rem] sm:text-[4rem] lg:text-[5rem] font-extrabold leading-[1.1] text-white tracking-tight">
-            Building the future of <br className="hidden sm:block" />
-            <span className="text-[#C9A227]">Erode</span>, one foundation at a time.
+            Building the future, <br className="hidden sm:block" />
+            <span className="text-[#C9A227]">one foundation</span> at a time.
           </h1>
         </motion.div>
         
@@ -85,7 +90,7 @@ export function ScrollHero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mt-6 mx-auto text-base sm:text-lg text-gray-400 leading-relaxed max-w-2xl font-light"
         >
-          The best civil engineers & construction company for premium residential & commercial projects in Erode. Where architectural vision meets structural integrity.
+          Best Civil Engineers & Construction in Erode. Premium residential & commercial building in Tamil Nadu. Where architectural vision meets uncompromising structural integrity.
         </motion.p>
 
         {/* CTA Buttons */}

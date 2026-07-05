@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     template: "%s | SS Construction",
   },
   description:
-    "Erode's premier civil engineering and construction company. We specialize in residential, commercial, and structural design with 4+ years of expertise.",
+    "Top civil engineering & construction company in Erode. Specializing in residential building, commercial construction, and structural design with 4+ years expertise.",
   keywords: [
     "SS Construction",
     "civil engineers in Erode",
